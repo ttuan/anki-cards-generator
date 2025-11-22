@@ -19,6 +19,8 @@ output/
 output.csv
 skipped_words.txt
 
+input.csv
+
 # IDE
 .idea/
 .vscode/
