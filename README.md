@@ -2,6 +2,10 @@
 
 A Python CLI tool that automates English vocabulary Anki card creation from CSV input. It fetches word definitions from Cambridge Dictionary, downloads pronunciation audio and images, and outputs Anki-ready CSV files.
 
+<p align="center">
+  <img src="demo.png" alt="Anki Card Demo" width="600" style="border: 2px solid #ddd; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+</p>
+
 ## ✨ Features
 
 - 📖 Fetch word definitions, pronunciations, and examples from Cambridge Dictionary API
