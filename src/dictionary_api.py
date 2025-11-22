@@ -23,7 +23,7 @@ class WordInfo:
 class DictionaryAPIClient:
     """Client for the dictionary API."""
 
-    def __init__(self, base_url: str = "http://localhost:3000"):
+    def __init__(self, base_url: str = "https://dictionary-api.eliaschen.dev"):
         self.base_url = base_url.rstrip("/")
 
     def get_word_info(self, word: str) -> Optional[WordInfo]:

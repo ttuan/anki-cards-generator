@@ -22,7 +22,7 @@ class AnkiCardGenerator:
         output_file: str = "output.csv",
         sounds_dir: str = "output/sounds",
         images_dir: str = "output/images",
-        dictionary_url: str = "http://localhost:3000",
+        dictionary_url: str = "https://dictionary-api.eliaschen.dev",
     ):
         self.csv_reader = CSVReader(input_file)
         self.csv_writer = CSVWriter(output_file)
@@ -121,7 +121,7 @@ def main():
     parser.add_argument("--sounds-dir", default="output/sounds", help="Directory for sound files")
     parser.add_argument("--images-dir", default="output/images", help="Directory for image files")
     parser.add_argument(
-        "--dictionary-url", default="http://localhost:3000", help="Dictionary API base URL"
+        "--dictionary-url", default="https://dictionary-api.eliaschen.dev", help="Dictionary API base URL"
     )
 
     args = parser.parse_args()
