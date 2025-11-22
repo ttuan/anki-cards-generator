@@ -1,0 +1,62 @@
+<div class="card-container">
+  <div class="card-back">
+    <!-- Type Answer Result -->
+    {{#Keyword}}
+    <div class="type-result-section">
+      {{type:Keyword}}
+    </div>
+    {{/Keyword}}
+
+    <!-- Keyword (English word) -->
+    {{#Keyword}}
+    <div class="keyword-section">
+      <div class="keyword">{{Keyword}}</div>
+      {{#Transcription}}
+      <div class="transcription">/{{Transcription}}/</div>
+      {{/Transcription}}
+    </div>
+    {{/Keyword}}
+
+    <!-- Sound Button -->
+    {{#Sound}}
+    <div class="sound-section">
+      <div class="sound-wrapper">{{Sound}}</div>
+    </div>
+    {{/Sound}}
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- Vietnamese Meaning -->
+    {{#Vietnamese}}
+    <div class="meaning-section">
+      <div class="vietnamese-meaning">{{Vietnamese}}</div>
+    </div>
+    {{/Vietnamese}}
+
+    <!-- Image -->
+    {{#Image}}
+    <div class="image-section">
+      <div class="image-container">{{Image}}</div>
+    </div>
+    {{/Image}}
+
+    <!-- Main Cloze Answer Revealed -->
+    <div class="cloze-section">
+      <div class="cloze-content">{{cloze:Explaination}}</div>
+    </div>
+
+    <!-- Example Sentence -->
+    {{#Example}}
+    <div class="example-section">
+      <div class="section-label">Examples</div>
+      <div class="example-sentence">{{Example}}</div>
+    </div>
+    {{/Example}}
+
+    <!-- Decorative Elements -->
+    <div class="decoration decoration-1"></div>
+    <div class="decoration decoration-2"></div>
+    <div class="decoration decoration-3"></div>
+  </div>
+</div>

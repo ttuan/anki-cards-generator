@@ -1,0 +1,393 @@
+/* ============================================
+   CUSTOM CLOZE CARD TEMPLATE
+   Color Palette:
+   - Teal Dark: #00526B
+   - Coral: #FA8155
+   - Orange: #FFAD36
+   - Lime: #B7C82B
+   - Cyan: #0098B9
+   - Green: #007C74
+   - Amber: #F49D00
+   - Background: #3C3C3C
+   ============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+.card {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 15px;
+  background: #3c3c3c;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-container {
+  width: 100%;
+  max-width: 420px;
+  margin: 10px auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+.card-front,
+.card-back {
+  background: #4a4a4a;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  border-left: 4px solid #0098b9;
+}
+
+.card-front {
+  display: block !important;
+  text-align: center;
+}
+
+/* ============================================
+   SOUND SECTION
+   ============================================ */
+
+.sound-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.sound-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.sound-wrapper .replay-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  background: linear-gradient(135deg, #0098b9 0%, #00526b 100%);
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 152, 185, 0.4);
+}
+
+.sound-wrapper .replay-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 152, 185, 0.5);
+}
+
+.sound-wrapper .replay-button svg {
+  width: 22px;
+  height: 22px;
+  fill: white;
+}
+
+/* ============================================
+   IMAGE SECTION
+   ============================================ */
+
+.image-section {
+  margin: 12px 0;
+}
+
+.image-container {
+  background: #3c3c3c;
+  border-radius: 12px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 160px;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* ============================================
+   VIETNAMESE SECTION (FRONT)
+   ============================================ */
+
+.vietnamese-section {
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.vietnamese-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffad36;
+  padding: 8px 16px;
+  background: rgba(255, 173, 54, 0.15);
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* ============================================
+   SUGGESTION SECTION
+   ============================================ */
+
+.suggestion-section {
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.suggestion-text {
+  font-family: "Courier New", monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fa8155;
+  letter-spacing: 3px;
+  background: rgba(250, 129, 85, 0.15);
+  padding: 8px 16px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* ============================================
+   TYPE ANSWER SECTION
+   ============================================ */
+
+.type-section {
+  margin-bottom: 12px;
+}
+
+input[type="text"]#typeans {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 2px solid #5a5a5a;
+  border-radius: 8px;
+  background: #3c3c3c;
+  color: #ffffff;
+  text-align: center;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+input[type="text"]#typeans:focus {
+  border-color: #0098b9;
+  box-shadow: 0 0 0 2px rgba(0, 152, 185, 0.2);
+}
+
+input[type="text"]#typeans::placeholder {
+  color: #888888;
+}
+
+/* Type Answer Result (Back) */
+.type-result-section {
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.type-result-section #typeans {
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  padding: 10px 16px;
+  background: #3c3c3c;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.typeGood {
+  color: #b7c82b !important;
+  background: rgba(183, 200, 43, 0.2) !important;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+.typeBad {
+  color: #fa8155 !important;
+  background: rgba(250, 129, 85, 0.2) !important;
+  text-decoration: line-through;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+.typeMissed {
+  color: #0098b9 !important;
+  background: rgba(0, 152, 185, 0.2) !important;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+/* ============================================
+   CLOZE SECTION
+   ============================================ */
+
+.cloze-section {
+  background: #3c3c3c;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+
+.cloze-content {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #e0e0e0;
+  text-align: left;
+}
+
+.cloze,
+.cloze-inactive,
+.cloze-deletion,
+span[class*="cloze"] {
+  font-weight: 700;
+  color: #0098b9;
+  background: rgba(0, 152, 185, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border-bottom: 2px solid #0098b9;
+}
+
+/* ============================================
+   KEYWORD SECTION (BACK)
+   ============================================ */
+
+.keyword-section {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.keyword {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0098b9;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.transcription {
+  font-size: 1rem;
+  color: #888888;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* ============================================
+   DIVIDER
+   ============================================ */
+
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #0098b9, transparent);
+  margin: 14px 0;
+  border-radius: 1px;
+}
+
+/* ============================================
+   MEANING SECTION (BACK)
+   ============================================ */
+
+.meaning-section {
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.vietnamese-meaning {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffad36;
+  line-height: 1.4;
+}
+
+/* ============================================
+   EXAMPLE SECTION
+   ============================================ */
+
+.example-section {
+  background: #3c3c3c;
+  border-radius: 10px;
+  padding: 12px 14px;
+  border-left: 3px solid #007c74;
+}
+
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #007c74;
+  margin-bottom: 6px;
+}
+
+.example-sentence {
+  font-size: 0.95rem;
+  color: #c0c0c0;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-front,
+.card-back {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 480px) {
+  .card-container {
+    padding: 0 10px;
+    margin: 8px auto;
+  }
+
+  .card-front,
+  .card-back {
+    padding: 16px;
+    border-radius: 12px;
+  }
+}
+
+/* ============================================
+   NIGHT MODE (same as default since already dark)
+   ============================================ */
+
+.nightMode.card,
+.nightMode .card,
+.night_mode.card,
+.night_mode .card {
+  background: #3c3c3c !important;
+}

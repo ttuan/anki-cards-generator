@@ -1,0 +1,706 @@
+/* ============================================
+   MODERN CLOZE CARD TEMPLATE
+   English-Vietnamese Vocabulary
+   Supports both Light and Dark themes
+   ============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+
+/* ============================================
+   LIGHT THEME (DEFAULT)
+   ============================================ */
+
+.card {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 15px;
+  background: linear-gradient(180deg, #f0f4ff 0%, #fdf4ff 50%, #fff4f4 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.card-container {
+  width: 100%;
+  max-width: 420px;
+  margin: 10px auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+.card-front,
+.card-back {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 20px;
+  box-shadow: 0 6px 24px rgba(102, 126, 234, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-front {
+  display: block !important;
+  text-align: center;
+}
+
+.card-front > * {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.card-front .sound-section,
+.card-front .suggestion-section {
+  width: auto !important;
+}
+
+/* Decorations - Hidden by default, using subtle card styling instead */
+.decoration {
+  display: none;
+}
+
+/* Type Answer Section (Front) */
+.type-section {
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Style Anki's type input */
+input[type="text"]#typeans {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #1f2937;
+  text-align: center;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+input[type="text"]#typeans:focus {
+  border-color: #667eea;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.12);
+}
+
+input[type="text"]#typeans::placeholder {
+  color: #9ca3af;
+}
+
+/* Type Answer Result Section (Back) */
+.type-result-section {
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* Style Anki's type answer comparison */
+.type-result-section #typeans {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  background: #f8fafc;
+  border-radius: 8px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Correct answer - green */
+.typeGood {
+  color: #059669 !important;
+  background: rgba(5, 150, 105, 0.1) !important;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+/* Wrong answer - red with strikethrough */
+.typeBad {
+  color: #dc2626 !important;
+  background: rgba(220, 38, 38, 0.1) !important;
+  text-decoration: line-through;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+/* Missing characters - blue */
+.typeMissed {
+  color: #2563eb !important;
+  background: rgba(37, 99, 235, 0.1) !important;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+/* Card Number */
+.card-number {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  background: #f8fafc;
+  padding: 4px 10px;
+  border-radius: 12px;
+  z-index: 10;
+}
+
+/* Sound Wrapper (Anki's replay button) */
+.sound-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.sound-wrapper .replay-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  overflow: hidden;
+}
+
+.sound-wrapper .replay-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.sound-wrapper .replay-button svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+/* Cloze Section */
+.cloze-section {
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  text-align: left !important;
+}
+
+.cloze-content {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #1f2937;
+  text-align: left !important;
+  display: block !important;
+}
+
+.cloze-content * {
+  display: inline !important;
+  vertical-align: middle;
+}
+
+/* Cloze blank styling - all possible Anki class names */
+.cloze,
+.cloze-inactive,
+.cloze-deletion,
+.cloze-deletion-inactive,
+span.cloze,
+span[class*="cloze"] {
+  font-weight: 700;
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.1);
+  padding: 2px 8px;
+  border-radius: 6px;
+  border-bottom: 2px solid #2563eb;
+  display: inline !important;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Vietnamese Section (Front) */
+.vietnamese-section {
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.vietnamese-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2563eb;
+  text-align: center;
+  padding: 8px 16px;
+  background: rgba(37, 99, 235, 0.1);
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* Vietnamese Meaning (Back) */
+.meaning-section {
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.vietnamese-meaning {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1.4;
+}
+
+/* Suggestion Section */
+.suggestion-section {
+  margin-bottom: 14px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.suggestion-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #dc2626;
+  margin-bottom: 4px;
+}
+
+.suggestion-text {
+  font-family: "Courier New", monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #dc2626;
+  letter-spacing: 3px;
+  background: rgba(220, 38, 38, 0.1);
+  padding: 8px 16px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* Image Section */
+.image-section {
+  margin: 12px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.image-container {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 160px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* Divider */
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #a78bfa, transparent);
+  margin: 14px 0;
+  border-radius: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Labels */
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #667eea;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Example Section */
+.example-section {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 12px 14px;
+  border-left: 4px solid #667eea;
+  position: relative;
+  z-index: 1;
+}
+
+.example-sentence {
+  font-size: 0.95rem;
+  color: #1f2937;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Hint Text */
+.hint-text {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  font-weight: 500;
+  padding: 6px 12px;
+  background: #f8fafc;
+  border-radius: 16px;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+/* Keyword Section */
+.keyword-section {
+  text-align: center;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.keyword {
+  font-family: "Playfair Display", serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.transcription {
+  font-size: 1rem;
+  color: #6b7280;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Sound Button */
+.sound-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.sound-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.sound-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.sound-btn:active {
+  transform: translateY(0);
+}
+
+.sound-btn svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(102, 126, 234, 0.5);
+  }
+}
+
+@keyframes soundPulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(102, 126, 234, 0.6);
+  }
+}
+
+.card-front,
+.card-back {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.cloze-section,
+.meaning-section,
+.image-section,
+.example-section {
+  animation: fadeIn 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.cloze-section {
+  animation-delay: 0.1s;
+}
+.meaning-section {
+  animation-delay: 0.15s;
+}
+.image-section {
+  animation-delay: 0.2s;
+}
+.example-section {
+  animation-delay: 0.25s;
+}
+
+.sound-btn,
+.sound-wrapper .replay-button {
+  animation: pulse 2s infinite;
+}
+
+.sound-btn:hover,
+.sound-wrapper .replay-button:hover {
+  animation: none;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 480px) {
+  .card-container {
+    padding: 0 12px;
+    margin: 12px auto;
+  }
+
+  .card-front,
+  .card-back {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .cloze-content {
+    font-size: 1rem;
+  }
+
+  .vietnamese-meaning {
+    font-size: 1.1rem;
+  }
+}
+
+/* ============================================
+   DARK THEME (NIGHT MODE)
+   ============================================ */
+
+.nightMode.card,
+.nightMode .card,
+.night_mode.card,
+.night_mode .card {
+  background: linear-gradient(
+    180deg,
+    #0a0a12 0%,
+    #12121f 50%,
+    #0a0a12 100%
+  ) !important;
+}
+
+.nightMode .card-front,
+.nightMode .card-back,
+.night_mode .card-front,
+.night_mode .card-back {
+  background: linear-gradient(145deg, #1e2433 0%, #252d3d 100%);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nightMode .card-number,
+.night_mode .card-number {
+  background: rgba(30, 41, 59, 0.8);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nightMode .cloze-section,
+.nightMode .image-container,
+.nightMode .example-section,
+.nightMode .hint-text,
+.night_mode .cloze-section,
+.night_mode .image-container,
+.night_mode .example-section,
+.night_mode .hint-text {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nightMode .cloze-content,
+.nightMode .vietnamese-meaning,
+.night_mode .cloze-content,
+.night_mode .vietnamese-meaning {
+  color: #f1f5f9;
+}
+
+.nightMode .cloze,
+.nightMode .cloze-inactive,
+.nightMode .cloze-deletion,
+.nightMode span[class*="cloze"],
+.night_mode .cloze,
+.night_mode .cloze-inactive,
+.night_mode .cloze-deletion,
+.night_mode span[class*="cloze"] {
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.2);
+  border-bottom-color: #60a5fa;
+  display: inline !important;
+}
+
+.nightMode .vietnamese-text,
+.night_mode .vietnamese-text {
+  background: rgba(96, 165, 250, 0.15);
+  color: #60a5fa;
+  border-left-color: #60a5fa;
+}
+
+.nightMode .suggestion-text,
+.night_mode .suggestion-text {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+}
+
+.nightMode .suggestion-label,
+.night_mode .suggestion-label {
+  color: #f87171;
+}
+
+.nightMode .hint-text,
+.night_mode .hint-text {
+  color: #94a3b8;
+}
+
+.nightMode .example-sentence,
+.night_mode .example-sentence {
+  color: #e2e8f0;
+}
+
+.nightMode .section-label,
+.night_mode .section-label {
+  color: #a78bfa;
+}
+
+.nightMode .divider,
+.night_mode .divider {
+  background: linear-gradient(90deg, transparent, #6366f1, transparent);
+}
+
+.nightMode .keyword,
+.night_mode .keyword {
+  background: linear-gradient(135deg, #a78bfa 0%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nightMode .transcription,
+.night_mode .transcription {
+  color: #94a3b8;
+}
+
+
+/* Dark mode type input */
+.nightMode input[type="text"]#typeans,
+.night_mode input[type="text"]#typeans {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+}
+
+.nightMode input[type="text"]#typeans:focus,
+.night_mode input[type="text"]#typeans:focus {
+  border-color: #a78bfa;
+  background: rgba(30, 41, 59, 1);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+}
+
+.nightMode #typeans,
+.night_mode #typeans {
+  background: rgba(30, 41, 59, 0.8);
+}
+
+.nightMode .type-label,
+.night_mode .type-label {
+  color: #a78bfa;
+}
+
+.nightMode .typeGood,
+.night_mode .typeGood {
+  color: #34d399 !important;
+  background: rgba(52, 211, 153, 0.15) !important;
+}
+
+.nightMode .typeBad,
+.night_mode .typeBad {
+  color: #f87171 !important;
+  background: rgba(248, 113, 113, 0.15) !important;
+}
+
+.nightMode .typeMissed,
+.night_mode .typeMissed {
+  color: #60a5fa !important;
+  background: rgba(96, 165, 250, 0.15) !important;
+}

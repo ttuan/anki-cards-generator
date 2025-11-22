@@ -1,0 +1,71 @@
+<div class="card-container">
+  <div class="card-back">
+    <!-- Type Answer Result (hidden if correct) -->
+    {{#Keyword}}
+    <div class="type-result-section" id="typeResult">{{type:Keyword}}</div>
+    {{/Keyword}}
+
+    <script>
+      (function () {
+        var result = document.getElementById("typeResult");
+        if (result) {
+          // Check if there are any wrong or missed characters
+          var hasBad = result.querySelector(".typeBad");
+          var hasMissed = result.querySelector(".typeMissed");
+
+          // If all correct (no bad or missed), hide the section
+          if (!hasBad && !hasMissed) {
+            result.style.display = "none";
+          }
+        }
+      })();
+    </script>
+
+    <!-- Keyword -->
+    {{#Keyword}}
+    <div class="keyword-section">
+      <div class="keyword">{{Keyword}}</div>
+      {{#Transcription}}
+      <div class="transcription">{{Transcription}}</div>
+      {{/Transcription}}
+    </div>
+    {{/Keyword}}
+
+    <!-- Sound -->
+    {{#Sound}}
+    <div class="sound-section">
+      <div class="sound-wrapper">{{Sound}}</div>
+    </div>
+    {{/Sound}}
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- Vietnamese Meaning -->
+    {{#Vietnamese}}
+    <div class="meaning-section">
+      <div class="vietnamese-meaning">{{Vietnamese}}</div>
+    </div>
+    {{/Vietnamese}}
+
+    <!-- Image -->
+    {{#Image}}
+    <div class="image-section">
+      <div class="image-container">{{Image}}</div>
+    </div>
+    {{/Image}}
+
+    <!-- Main Cloze Answer -->
+    <div class="cloze-section">
+      <div class="cloze-content">{{cloze:Explaination}}</div>
+    </div>
+
+    <!-- Example -->
+    {{#Example}}
+    <div class="example-section">
+      <div class="section-label">Example</div>
+      <div class="example-sentence">{{Example}}</div>
+    </div>
+    {{/Example}}
+  </div>
+</div>

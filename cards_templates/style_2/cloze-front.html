@@ -1,0 +1,41 @@
+<div class="card-container">
+  <div class="card-front">
+    <!-- Sound -->
+    {{#Sound}}
+    <div class="sound-section">
+      <div class="sound-wrapper">{{Sound}}</div>
+    </div>
+    {{/Sound}}
+
+    <!-- Image -->
+    {{#Image}}
+    <div class="image-section">
+      <div class="image-container">{{Image}}</div>
+    </div>
+    {{/Image}}
+
+    <!-- Vietnamese Meaning -->
+    {{#Vietnamese}}
+    <div class="vietnamese-section">
+      <div class="vietnamese-text">{{Vietnamese}}</div>
+    </div>
+    {{/Vietnamese}}
+
+    <!-- Suggestion -->
+    {{#Suggestion}}
+    <div class="suggestion-section">
+      <div class="suggestion-text">{{Suggestion}}</div>
+    </div>
+    {{/Suggestion}}
+
+    <!-- Type Answer Input -->
+    {{#Keyword}}
+    <div class="type-section">{{type:Keyword}}</div>
+    {{/Keyword}}
+
+    <!-- Main Cloze Content -->
+    <div class="cloze-section">
+      <div class="cloze-content">{{cloze:Explaination}}</div>
+    </div>
+  </div>
+</div>
