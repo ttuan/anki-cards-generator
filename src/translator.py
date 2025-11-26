@@ -4,7 +4,7 @@ from typing import Optional
 
 
 class Translator:
-    """Translate English words to Vietnamese using googletrans."""
+    """Translate English words to Vietnamese using deep-translator."""
 
     def __init__(self):
         self._translator = None
@@ -14,12 +14,12 @@ class Translator:
         """Lazy initialization of translator."""
         if not self._initialized:
             try:
-                from googletrans import Translator as GoogleTranslator
+                from deep_translator import GoogleTranslator
 
-                self._translator = GoogleTranslator()
+                self._translator = GoogleTranslator(source="en", target="vi")
                 self._initialized = True
             except ImportError:
-                print("Warning: googletrans not installed. Run: pip install googletrans==4.0.0rc1")
+                print("Warning: deep-translator not installed. Run: pip install deep-translator")
                 self._initialized = True
 
     def translate_to_vietnamese(self, word: str) -> Optional[str]:
@@ -41,8 +41,8 @@ class Translator:
             return None
 
         try:
-            result = self._translator.translate(word, src="en", dest="vi")
-            return result.text
+            result = self._translator.translate(word)
+            return result
         except Exception as e:
             print(f"Translation error for '{word}': {e}")
             return None
