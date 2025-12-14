@@ -18,7 +18,7 @@ class InputWord:
 class AnkiCard:
     """Output Anki card data."""
 
-    no: int
+    no: str
     image: str = ""
     vietnamese: str = ""
     suggestion: str = ""
@@ -119,7 +119,7 @@ class CSVWriter:
 
 if __name__ == "__main__":
     card = AnkiCard(
-        no=1,
+        no="absorb",
         image="absorb.jpg",
         vietnamese="hút/thấm",
         suggestion="_ b _ _ r b",

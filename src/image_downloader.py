@@ -1,6 +1,7 @@
 """Download images from Pexels API."""
 
 import os
+import time
 import requests
 from pathlib import Path
 from typing import Optional
@@ -45,27 +46,53 @@ class PexelsImageDownloader:
 
         return self._download_image(image_url, filename)
 
-    def _search_image(self, keyword: str) -> Optional[str]:
-        """Search Pexels for an image matching the keyword."""
+    def _search_image(self, keyword: str, max_retries: int = 3, initial_delay: int = 2) -> Optional[str]:
+        """
+        Search Pexels for an image matching the keyword.
+
+        Implements rate limit handling with exponential backoff.
+
+        Args:
+            keyword: Search keyword
+            max_retries: Maximum number of retry attempts for rate limit errors
+            initial_delay: Initial delay in seconds before first retry
+        """
         url = f"{self.base_url}/search"
         headers = {"Authorization": self.api_key}
         params = {"query": keyword, "per_page": 1, "orientation": "square"}
 
-        try:
-            response = requests.get(url, headers=headers, params=params, timeout=10)
-            response.raise_for_status()
-            data = response.json()
+        for attempt in range(max_retries + 1):
+            try:
+                response = requests.get(url, headers=headers, params=params, timeout=10)
+                response.raise_for_status()
+                data = response.json()
 
-            photos = data.get("photos", [])
-            if photos:
-                return photos[0]["src"]["medium"]
+                photos = data.get("photos", [])
+                if photos:
+                    return photos[0]["src"]["medium"]
 
-            print(f"No images found for keyword: {keyword}")
-            return None
+                print(f"No images found for keyword: {keyword}")
+                return None
 
-        except requests.RequestException as e:
-            print(f"Error searching Pexels for '{keyword}': {e}")
-            return None
+            except requests.HTTPError as e:
+                if e.response.status_code == 429:
+                    if attempt < max_retries:
+                        delay = initial_delay * (2 ** attempt)
+                        print(f"Rate limit hit for '{keyword}'. Waiting {delay}s before retry ({attempt + 1}/{max_retries})...")
+                        time.sleep(delay)
+                        continue
+                    else:
+                        print(f"Rate limit exceeded for '{keyword}' after {max_retries} retries. Skipping.")
+                        return None
+                else:
+                    print(f"HTTP error searching Pexels for '{keyword}': {e}")
+                    return None
+
+            except requests.RequestException as e:
+                print(f"Error searching Pexels for '{keyword}': {e}")
+                return None
+
+        return None
 
     def _download_image(self, url: str, filename: str) -> Optional[str]:
         """Download image from URL."""

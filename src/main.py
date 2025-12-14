@@ -40,7 +40,6 @@ class AnkiCardGenerator:
         """
         cards = []
         skipped = []
-        card_no = 0
 
         for input_word in self.csv_reader.read_words():
             print(f"\nProcessing: {input_word.keyword}")
@@ -52,8 +51,7 @@ class AnkiCardGenerator:
                 skipped.append(input_word.keyword)
                 continue
 
-            card_no += 1
-            card = self._process_word(card_no, input_word, word_info)
+            card = self._process_word(input_word, word_info)
             cards.append(card)
 
         self.csv_writer.write_cards(cards)
@@ -76,7 +74,7 @@ class AnkiCardGenerator:
                 f.write(f"{word}\n")
         print(f"Skipped words saved to: {log_path}")
 
-    def _process_word(self, idx: int, input_word, word_info) -> AnkiCard:
+    def _process_word(self, input_word, word_info) -> AnkiCard:
         """Process a single word and generate an Anki card."""
         keyword = input_word.keyword
         vietnamese = input_word.vietnamese
@@ -101,7 +99,7 @@ class AnkiCardGenerator:
         sound_anki = f"[sound:{sound_file}]" if sound_file else ""
 
         return AnkiCard(
-            no=idx,
+            no=keyword,
             image=image_anki,
             vietnamese=vietnamese,
             suggestion=suggestion,
